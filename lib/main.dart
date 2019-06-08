@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'TimeDetail/TimeDetail.dart';
+import 'TotalTime/TotalTime.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,7 +29,20 @@ class MainLayout extends StatelessWidget {
       body: new LayoutBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('Add new time detail');
+          showTimePicker(
+            context: context,
+            initialTime: TimeOfDay(hour: 0, minute: 0),
+            builder: (BuildContext context, Widget child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    alwaysUse24HourFormat: true),
+                child: child,
+              );
+            }).then<TimeOfDay>((TimeOfDay time) {
+            if (time != null) {
+              print('Time choosen ${time.format(context)}');
+            }
+          });
         },
         tooltip: 'Add new time detail',
         child: Icon(Icons.add),
@@ -47,58 +63,6 @@ class LayoutBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
-    );
-  }
-}
-
-class TotalTime extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new ListTile(
-      leading: Icon(Icons.access_time),
-      title: new Container(
-        child: new Text(
-          'Total: 00:00',
-          style: new TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
-}
-
-class TimeDetail extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return new ListView(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        new TimeDetailItem(1,7),
-        Divider(),
-        new TimeDetailItem(0,54),
-        Divider(),
-      ],
-
-    );
-  }
-
-}
-
-class TimeDetailItem extends StatelessWidget {
-  final hours;
-  final minutes;
-
-  TimeDetailItem(this.hours, this.minutes);
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new ListTile(
-      leading: Icon(Icons.alarm_add),
-      title: new Text("${this.hours}:${this.minutes}"),
     );
   }
 }
