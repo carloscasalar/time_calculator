@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'TimeDetail/TimeDetail.dart';
+import 'TimeService.dart';
 import 'TotalTime/TotalTime.dart';
 
 void main() => runApp(MyApp());
@@ -12,11 +13,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: new MainLayout(),
+      home: new TimeState(
+        child: new MainLayout(),
+      ),
     );
   }
+}
+
+class TimeState extends InheritedWidget{
+  final timeService = new TimeService();
+
+  TimeState({Widget child}) : super(child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+
+  static TimeState of(BuildContext context) =>
+      context.inheritFromWidgetOfExactType(TimeState);
 }
 
 class MainLayout extends StatelessWidget {
@@ -40,7 +55,12 @@ class MainLayout extends StatelessWidget {
               );
             }).then<TimeOfDay>((TimeOfDay time) {
             if (time != null) {
-              print('Time choosen ${time.format(context)}');
+              TimeState.of(context).timeService.addTime(
+                new TimeValue(
+                  hours: time.hour,
+                  minutes: time.minute
+                )
+              );
             }
           });
         },
