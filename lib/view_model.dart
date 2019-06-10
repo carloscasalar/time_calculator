@@ -5,7 +5,7 @@ import 'model/model.dart';
 
 class ViewModel {
   final List<TimeItem> timeItems;
-  final Function(String, int, int) onAddTimeItem;
+  final Function(int, int) onAddTimeItem;
   final Function(TimeItem) onRemoveTimeItem;
   final Function() onRemoveAllTimeItems;
 
@@ -17,8 +17,7 @@ class ViewModel {
   });
 
   factory ViewModel.create(Store<AppState> store) {
-    _onAddTimeItem(String id, int hours, int minutes) =>
-        store.dispatch(AddTimeItemAction(
+    _onAddTimeItem(int hours, int minutes) => store.dispatch(AddTimeItemAction(
           hours: hours,
           minutes: minutes,
         ));

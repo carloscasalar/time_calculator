@@ -47,16 +47,22 @@ class MainLayout extends StatelessWidget {
 class LayoutBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new TotalTime(),
-        Divider(),
-        new TimeDetail(),
-      ],
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-    );
+    return new StoreConnector<AppState, ViewModel>(
+        converter: (Store<AppState> store) => ViewModel.create(store),
+        builder: (BuildContext context, ViewModel model) => new Column(
+              children: <Widget>[
+                new TotalTime(
+                  model: model,
+                ),
+                Divider(),
+                new TimeDetail(
+                  model: model,
+                ),
+              ],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+            ));
   }
 }
 
@@ -85,7 +91,7 @@ class _AddTimeButton extends State<AddTimeButton> {
               );
             }).then<TimeOfDay>((TimeOfDay time) {
           if (time != null) {
-            widget.model.onAddTimeItem('77', time.hour, time.minute);
+            widget.model.onAddTimeItem(time.hour, time.minute);
           }
         });
       },
