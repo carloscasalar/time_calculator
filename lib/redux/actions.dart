@@ -1,24 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:time_calculator/model/model.dart';
 
-class AddTimeAction {
-  final String id;
+class AddTimeItemAction {
   final int hours;
   final int minutes;
 
-  AddTimeAction({
-    @required this.id,
+  AddTimeItemAction({
     @required this.hours,
     @required this.minutes,
   });
 }
 
-class RemoveTimeAction {
-  final TimeItem time;
+class RemoveTimeItemAction {
+  final TimeItem timeItem;
 
-  RemoveTimeAction({
-    @required this.time,
+  RemoveTimeItemAction({
+    @required this.timeItem,
   });
 }
 
-class RemoveAllTimesAction {}
+class RemoveAllTimeItemsAction {}
