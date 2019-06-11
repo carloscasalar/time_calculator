@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:time_calculator/time_detail/time_detail.dart';
+import 'package:time_calculator/total_tiime/total_time.dart';
 
-import 'TimeDetail/TimeDetail.dart';
-import 'TotalTime/TotalTime.dart';
 import 'model/model.dart';
 import 'redux/redurcers.dart';
 import 'view_model.dart';

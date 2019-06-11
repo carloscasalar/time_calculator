@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:time_calculator/model/model.dart';
 
 import '../view_model.dart';
-import 'TimeDetailItem.dart';
+import 'time_detail_item.dart';
 
 class TimeDetail extends StatelessWidget {
   final ViewModel model;
