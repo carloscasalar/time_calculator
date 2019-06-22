@@ -12,7 +12,7 @@ class TimeDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListView.separated(
       shrinkWrap: true,
-      padding: const EdgeInsets.all(8.0),
+      //padding: const EdgeInsets.all(8.0),
       scrollDirection: Axis.vertical,
       separatorBuilder: (BuildContext context, int index) => const Divider(),
       itemCount: model.timeItems.length,

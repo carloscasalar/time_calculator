@@ -12,11 +12,14 @@ class TotalTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-      leading: Icon(Icons.access_time),
+      leading: Icon(
+        Icons.access_time,
+        size: 30,
+      ),
       title: new Container(
         child: new Text(
           'Total  ${this._calculateTotalTime()}',
-          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
         ),
       ),
     );

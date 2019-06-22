@@ -14,14 +14,18 @@ class TimeDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-      leading: Icon(Icons.alarm_add),
-      title: new Text(this._formattedTime()),
-      trailing: new StoreConnector<AppState, ViewModel>(
+      title: new Text(
+        this._formattedTime(),
+        style: TextStyle(fontSize: 25.0),
+        textAlign: TextAlign.center,
+      ),
+      leading: new StoreConnector<AppState, ViewModel>(
           converter: (Store<AppState> store) => ViewModel.create(store),
           builder: (BuildContext context, ViewModel model) => new IconButton(
                 icon: Icon(
                   Icons.delete_forever,
                   color: Theme.of(context).accentColor,
+                  size: 30.0,
                 ),
                 onPressed: () => model.onRemoveTimeItem(timeItem),
               )),
