@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_calculator/format/format_time.dart';
 import 'package:time_calculator/model/model.dart';
 
 import '../view_model.dart';
@@ -36,8 +37,8 @@ class TotalTime extends StatelessWidget {
     final int totalHours = hoursInItems + hoursInMinuteItems;
     final int totalMinutes = minutesInItems - hoursInMinuteItems * 60;
 
-    String minutesString =
-        totalMinutes > 9 ? '$totalMinutes' : '0$totalMinutes';
+    String minutesString = formatTime(totalMinutes);
+
     return "$totalHours:$minutesString";
   }
 }

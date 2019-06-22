@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:time_calculator/format/format_time.dart';
 import 'package:time_calculator/model/model.dart';
 
 import '../view_model.dart';
@@ -14,7 +15,7 @@ class TimeDetailItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
       leading: Icon(Icons.alarm_add),
-      title: new Text("${this.timeItem.hours}:${this.timeItem.minutes}"),
+      title: new Text(this._formattedTime()),
       trailing: new StoreConnector<AppState, ViewModel>(
           converter: (Store<AppState> store) => ViewModel.create(store),
           builder: (BuildContext context, ViewModel model) => new IconButton(
@@ -26,4 +27,7 @@ class TimeDetailItem extends StatelessWidget {
               )),
     );
   }
+
+  _formattedTime() =>
+      "${this.timeItem.hours}:${formatTime(this.timeItem.minutes)}";
 }
