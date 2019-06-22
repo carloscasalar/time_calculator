@@ -55,9 +55,11 @@ class LayoutBody extends StatelessWidget {
                   model: model,
                 ),
                 Divider(),
-                new TimeDetail(
-                  model: model,
-                ),
+                new Expanded(
+                  child: new TimeDetail(
+                    model: model,
+                  ),
+                )
               ],
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
